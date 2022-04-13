@@ -22,6 +22,10 @@ class AvisProduct
     #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'avisProducts')]
     private $product;
 
+    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'avis')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +63,18 @@ class AvisProduct
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
